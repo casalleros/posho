@@ -4,15 +4,22 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.l.marc.proyecto_1.Login.Login_Fragment;
+import com.l.marc.proyecto_1.NavigationHost;
 import com.l.marc.proyecto_1.R;
 
 public class Registro1 extends Fragment implements View.OnClickListener{
+    private Login_Fragment login_fragment;
+    private Registro2 registro2;
+
     private EditText userName;
     private EditText passw;
     private EditText repeatPassw;
@@ -42,7 +49,7 @@ public class Registro1 extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_registro1, container, false);
 
         userName = v.findViewById(R.id.et_registro1_userName);
@@ -52,7 +59,7 @@ public class Registro1 extends Fragment implements View.OnClickListener{
         siguiente = v.findViewById(R.id.btn_registro1_siguiente);
         cancelar = v.findViewById(R.id.btn_registro1_cancelar);
 
-
+        user = new Usuario();
 
         siguiente.setOnClickListener(this);
         cancelar.setOnClickListener(this);
@@ -82,28 +89,76 @@ public class Registro1 extends Fragment implements View.OnClickListener{
 
             if(comprobarLosCampos(txtUser, txtPassw, txtRepeatPassw, txtEmail))
             {
-                //pasar los datos a registro2
+                registro2 = Registro2.newInstance(user);
+                ((NavigationHost) getActivity()).navigateTo(registro2,true);
             }
+            else
+            {
+                Log.d("TAG", "no entro al if");
+            }
+        }
+        if (v.getId()==R.id.btn_registro1_cancelar)
+        {
+            login_fragment = new Login_Fragment();
+            ((NavigationHost) getActivity()).navigateTo(login_fragment,true);
         }
     }
 
-    private boolean comprobarLosCampos(String nombreUser, String pass, String rPass, String email)
+    private boolean comprobarLosCampos(String nombreUser, String pass, String rPass, String emailD)
     {
-        boolean validado = false;
-
-        if (!nombreUser.isEmpty())
+        if (comprobarNombreUser(nombreUser) && comprobarEmail(emailD) && comprobarContraseñas(pass, rPass))
         {
-            if (!email.isEmpty())
-            {
-                if (!pass.isEmpty())
-                {
-                    if (pass==rPass)
-                    {
-                        validado = true;
-                    }
-                }
-            }
+            return true;
         }
-        return validado;
+        else
+        {
+            Toast.makeText(getContext(), "Comprueba los campos", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+    }
+
+    private boolean comprobarNombreUser(String validarNombre)
+    {
+        if (validarNombre.isEmpty())
+        {
+            userName.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else {
+            user.setNombreUser(validarNombre);
+            return true;
+        }
+    }
+
+    private boolean comprobarEmail(String validarEmail)
+    {
+        if (validarEmail.isEmpty())
+        {
+            email.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else {
+            user.setEmail(validarEmail);
+            return true;
+        }
+    }
+
+    private boolean comprobarContraseñas(String contra, String repeatContra)
+    {
+        if (contra.isEmpty())
+        {
+            passw.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else if (repeatContra.isEmpty())
+        {
+            repeatPassw.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else{
+            user.setContraseña(contra);
+            return true;
+        }
     }
 }

@@ -1,53 +1,64 @@
 package com.l.marc.proyecto_1.Registro;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.l.marc.proyecto_1.Login.Login_Fragment;
+import com.l.marc.proyecto_1.NavigationHost;
 import com.l.marc.proyecto_1.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Registro2.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Registro2#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Registro2 extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import java.util.Calendar;
+
+public class Registro2 extends Fragment implements View.OnClickListener{
+
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Usuario user;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Login_Fragment login;
+    private EditText nombre;
+    private EditText apellidos;
+    private EditText fechaDeNacimiento;
+    private Button cancelar;
+    private Button registrar;
 
-    private OnFragmentInteractionListener mListener;
+
+    private String txtNombre;
+    private String txtApellidos;
+    private String txtfechaDeNacimiento;
+
+    private int dia;
+    private int mes;
+    private int año;
+
+    private Calendar calendar;
+    private FirebaseAuth mAuth;
+    private DatabaseReference bbdd;
 
     public Registro2() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Registro2.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Registro2 newInstance(String param1, String param2) {
+    public static Registro2 newInstance(Usuario user) {
         Registro2 fragment = new Registro2();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_PARAM1, user);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,54 +67,153 @@ public class Registro2 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            user = getArguments().getParcelable(ARG_PARAM1);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro2, container, false);
-    }
+        View v = inflater.inflate(R.layout.fragment_registro2, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        calendar = Calendar.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        bbdd = FirebaseDatabase.getInstance().getReference("Usuarios");
+        nombre = v.findViewById(R.id.et_registro2_nombre);
+        apellidos = v.findViewById(R.id.et_registro2_apellidos);
+        fechaDeNacimiento = v.findViewById(R.id.et_registro2_fecha);
+        fechaDeNacimiento.setOnClickListener(this);
+
+        cancelar = v.findViewById(R.id.btn_registro2_cancelar);
+        cancelar.setOnClickListener(this);
+
+        registrar = v.findViewById(R.id.btn_registro2_registrar);
+        registrar.setOnClickListener(this);
+
+        return v;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.et_registro2_fecha)
+        {
+            dia = calendar.get(Calendar.DAY_OF_MONTH);
+            mes = calendar.get(Calendar.MONTH);
+            año = calendar.get(Calendar.YEAR);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            fechaDeNacimiento.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, año, mes, dia);
+            datePickerDialog.show();
+        }
+
+        if (v.getId()==R.id.btn_registro2_registrar)
+        {
+            txtNombre = nombre.getText().toString();
+            txtApellidos = apellidos.getText().toString();
+            txtfechaDeNacimiento = fechaDeNacimiento.getText().toString();
+            if (comprobarLosCampos(txtNombre, txtApellidos, txtfechaDeNacimiento))
+            {
+                crearUsuario(user.getEmail(), user.getApellidos(), user);
+                login();
+            }
+
+        }
+    }
+
+    public boolean comprobarLosCampos(String n, String a, String f)
+    {
+        if (comprobarNombre(n) && comprobarFecha(f) && comprobarApellidos(a))
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private boolean comprobarNombre(String validarNombre)
+    {
+        if (validarNombre.isEmpty())
+        {
+            nombre.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else {
+            user.setNombre(validarNombre);
+            return true;
+        }
+    }
+
+    private boolean comprobarFecha(String validarFecha)
+    {
+        if (validarFecha.isEmpty())
+        {
+            nombre.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else {
+            user.setFechaNacimiento(validarFecha);
+            return true;
+        }
+    }
+
+    private boolean comprobarApellidos(String validarApellidos)
+    {
+        if (validarApellidos.isEmpty())
+        {
+            nombre.setError(getString(R.string.EspacioEnBlanco));
+            return false;
+        }
+        else {
+            user.setApellidos(validarApellidos);
+            return true;
+        }
+    }
+
+    private void crearUsuario(final String email, final String contra, final Usuario user)
+    {
+        mAuth.createUserWithEmailAndPassword(email, contra)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser userFirebase = mAuth.getCurrentUser();
+                            String uid = userFirebase.getUid();
+                            datosDeUsuario(uid, user);
+                        } else {
+                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void datosDeUsuario(String uid, Usuario user)
+    {
+        bbdd.child(uid).setValue(user);
+    }
+
+    private void login()
+    {
+        login = new Login_Fragment();
+        ((NavigationHost) getActivity()).navigateTo(login,false);
     }
 }
