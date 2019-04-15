@@ -108,18 +108,12 @@ public class Registro2 extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         if (v.getId()==R.id.et_registro2_fecha)
         {
-<<<<<<< HEAD
             final Calendar c = Calendar.getInstance();
             dia = c.get(Calendar.YEAR);
             mes = c.get(Calendar.MONTH);
             año = c.get(Calendar.DAY_OF_MONTH);
 
 
-=======
-            dia = calendar.get(Calendar.DAY_OF_MONTH);
-            mes = calendar.get(Calendar.MONTH);
-            año = calendar.get(Calendar.YEAR);
->>>>>>> 5a7df3c48cdda52cc7a501427afc235b2b3eb63f
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                     new DatePickerDialog.OnDateSetListener() {
 
@@ -130,11 +124,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
                             fechaDeNacimiento.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
                         }
-<<<<<<< HEAD
                     }, dia, mes, año);
-=======
-                    }, año, mes, dia);
->>>>>>> 5a7df3c48cdda52cc7a501427afc235b2b3eb63f
             datePickerDialog.show();
         }
 

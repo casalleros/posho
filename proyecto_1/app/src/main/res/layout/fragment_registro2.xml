@@ -80,17 +80,10 @@
         android:id="@+id/et_registro2_fecha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-=======
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
->>>>>>> 5a7df3c48cdda52cc7a501427afc235b2b3eb63f
         android:ems="10"
         android:hint="Fecha de nacimiento"
         android:inputType="textPersonName"
@@ -100,13 +93,9 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-<<<<<<< HEAD
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"/>
-=======
-        app:layout_constraintVertical_bias="0.353" />
->>>>>>> 5a7df3c48cdda52cc7a501427afc235b2b3eb63f
 
     <Button
         android:id="@+id/btn_registro2_registrar"
