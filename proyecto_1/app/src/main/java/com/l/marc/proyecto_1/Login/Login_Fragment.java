@@ -22,6 +22,8 @@ import com.l.marc.proyecto_1.R;
 import com.l.marc.proyecto_1.Registro.Registro1;
 import com.l.marc.proyecto_1.ViewPager.ViewPagerFragment;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class Login_Fragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
 
@@ -82,10 +84,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
 
             case R.id.btn_autenticar_login:
-                correu = et_correu_login.getText().toString();
-                contraseña = et_pass_login.getText().toString();
-
-                autentificacionUser(correu, contraseña);
+                autentificacionUser();
                 break;
             case R.id.btn_registrar_login:
                 registro();
@@ -94,6 +93,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void autenticar() {
+
         viewPagerFragment = new ViewPagerFragment();
         ((NavigationHost) getActivity()).navigateTo(viewPagerFragment,true);//Que fasil!
     }
@@ -103,19 +103,28 @@ public class Login_Fragment extends Fragment implements View.OnClickListener {
         ((NavigationHost) getActivity()).navigateTo(Registre_Fragment,true);//Que fasil!
     }
 
-    private void autentificacionUser(String email, String contraseña)
+    private void autentificacionUser()
     {
-        mAuth.signInWithEmailAndPassword(email, contraseña)
+        mAuth.signInWithEmailAndPassword(et_correu_login.getText().toString(),et_pass_login.getText().toString())
+
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            autenticar();
+
+                            viewPagerFragment = new ViewPagerFragment();
+                            ((NavigationHost) getActivity()).navigateTo(viewPagerFragment,false);
                         } else {
-                            Toast.makeText(getContext(), "Comproba que has introduit correctament les dades", Toast.LENGTH_LONG).show();
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(getActivity(), "Vuelve a comprobar el email y" +
+                                    " la contraseña introducidos.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 }
+

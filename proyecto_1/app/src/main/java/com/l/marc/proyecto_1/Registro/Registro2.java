@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +26,8 @@ import com.l.marc.proyecto_1.NavigationHost;
 import com.l.marc.proyecto_1.R;
 
 import java.util.Calendar;
+
+import static android.content.ContentValues.TAG;
 
 public class Registro2 extends Fragment implements View.OnClickListener{
 
@@ -135,7 +138,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
             txtfechaDeNacimiento = fechaDeNacimiento.getText().toString();
             if (comprobarLosCampos(txtNombre, txtApellidos, txtfechaDeNacimiento))
             {
-                crearUsuario(user.getEmail(), user.getApellidos(), user);
+                crearUsuario();
                 login();
             }
 
@@ -192,18 +195,33 @@ public class Registro2 extends Fragment implements View.OnClickListener{
         }
     }
 
-    private void crearUsuario(final String email, final String contra, final Usuario user)
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+    }
+
+    private void crearUsuario()
     {
-        mAuth.createUserWithEmailAndPassword(email, contra)
+        mAuth.createUserWithEmailAndPassword(user.getEmail().toString(), user.getContraseña().toString())
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FirebaseUser userFirebase = mAuth.getCurrentUser();
-                            String uid = userFirebase.getUid();
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser userFire = mAuth.getCurrentUser();
+                            String uid = userFire.getUid();
                             datosDeUsuario(uid, user);
+
                         } else {
-                            Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            updateUI(null);
                         }
                     }
                 });
