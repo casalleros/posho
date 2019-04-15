@@ -106,7 +106,7 @@ public class Registro1 extends Fragment implements View.OnClickListener{
 
     private boolean comprobarLosCampos(String nombreUser, String pass, String rPass, String emailD)
     {
-        if (comprobarNombreUser(nombreUser) && comprobarEmail(emailD) && comprobarContraseñas(pass, rPass))
+        if (comprobarNombreUser(nombreUser) && comprobarEmail(emailD) && comprobarContraseñas())
         {
             return true;
         }
@@ -144,20 +144,25 @@ public class Registro1 extends Fragment implements View.OnClickListener{
         }
     }
 
-    private boolean comprobarContraseñas(String contra, String repeatContra)
+    public boolean comprobarContraseñas()
     {
-        if (contra.isEmpty())
+
+        String contrasenya1 = passw.getText().toString();
+        String contrasenya2 = repeatPassw.getText().toString();
+
+        if (contrasenya1.isEmpty())
         {
-            passw.setError(getString(R.string.EspacioEnBlanco));
+            passw.setError("No se puede dejar este espacio en blanco");
             return false;
         }
-        else if (repeatContra.isEmpty())
+        else if (!contrasenya1.equals(contrasenya2))
         {
-            repeatPassw.setError(getString(R.string.EspacioEnBlanco));
+            passw.setError("Las contraseñas no coincide");
             return false;
         }
-        else{
-            user.setContraseña(contra);
+
+        else {
+            passw.setError(null);
             return true;
         }
     }
