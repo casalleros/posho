@@ -9,20 +9,20 @@ public class Usuario implements Parcelable {
     private String apellidos;
     private String email;
     private String fechaNacimiento;
-    private String localidad;
+    private String contraseña;
 
     public Usuario()
     {
 
     }
 
-    public Usuario(String nombre, String nombreUser, String apellidos, String email, String fechaNacimiento, String localidad) {
+    public Usuario(String nombre, String nombreUser, String apellidos, String email, String fechaNacimiento, String contraseña) {
         this.nombre = nombre;
         this.nombreUser = nombreUser;
         this.apellidos = apellidos;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-        this.localidad = localidad;
+        this.contraseña = contraseña;
     }
 
     public String getNombre() {
@@ -65,12 +65,12 @@ public class Usuario implements Parcelable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getLocalidad() {
-        return localidad;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public static Creator<Usuario> getCREATOR() {
@@ -83,7 +83,7 @@ public class Usuario implements Parcelable {
         apellidos = in.readString();
         email = in.readString();
         fechaNacimiento = in.readString();
-        localidad = in.readString();
+        contraseña = in.readString();
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Usuario implements Parcelable {
         dest.writeString(apellidos);
         dest.writeString(email);
         dest.writeString(fechaNacimiento);
-        dest.writeString(localidad);
+        dest.writeString(contraseña);
     }
 
     @SuppressWarnings("unused")
