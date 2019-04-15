@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\ricar\\AndroidStudioProjects\\proyecto_1\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ja\\values-ja.xml",
+            "outputFile": "C:\\Users\\ricar\\OneDrive\\Documents\\GitHub\\posho\\proyecto_1\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ja\\values-ja.xml",
             "map": [
                 {
                     "source": "C:\\Users\\ricar\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\436871c00e7d7df3b3110dcc2b3cec48\\res\\values-ja\\values-ja.xml",
