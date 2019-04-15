@@ -24,7 +24,7 @@ public class Registro1 extends Fragment implements View.OnClickListener{
     private EditText passw;
     private EditText repeatPassw;
     private EditText email;
-    private Button siguiente;
+    private Button seguent;
     private Button cancelar;
 
     private Usuario user;
@@ -56,12 +56,12 @@ public class Registro1 extends Fragment implements View.OnClickListener{
         passw = v.findViewById(R.id.et_registro1_password);
         repeatPassw = v.findViewById(R.id.et_registro1_repeatPassword);
         email = v.findViewById(R.id.et_registro1_email);
-        siguiente = v.findViewById(R.id.btn_registro1_siguiente);
+        seguent = v.findViewById(R.id.btn_registro1_siguiente);
         cancelar = v.findViewById(R.id.btn_registro1_cancelar);
 
         user = new Usuario();
 
-        siguiente.setOnClickListener(this);
+        seguent.setOnClickListener(this);
         cancelar.setOnClickListener(this);
 
 
@@ -94,7 +94,7 @@ public class Registro1 extends Fragment implements View.OnClickListener{
             }
             else
             {
-                Log.d("TAG", "no entro al if");
+                Log.d("TAG", "no entre al if");
             }
         }
         if (v.getId()==R.id.btn_registro1_cancelar)
@@ -112,7 +112,7 @@ public class Registro1 extends Fragment implements View.OnClickListener{
         }
         else
         {
-            Toast.makeText(getContext(), "Comprueba los campos", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Comproba els camps", Toast.LENGTH_LONG).show();
             return false;
         }
 

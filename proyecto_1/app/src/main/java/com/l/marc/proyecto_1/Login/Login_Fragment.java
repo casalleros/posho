@@ -31,7 +31,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener {
     private EditText et_correu_login;
     private EditText et_pass_login;
 
-    String correo;
+    String correu;
     String contraseña;
 
     private Registro1 Registre_Fragment;
@@ -82,10 +82,10 @@ public class Login_Fragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
 
             case R.id.btn_autenticar_login:
-                correo = et_correu_login.getText().toString();
+                correu = et_correu_login.getText().toString();
                 contraseña = et_pass_login.getText().toString();
 
-                autentificacionUser(correo, contraseña);
+                autentificacionUser(correu, contraseña);
                 break;
             case R.id.btn_registrar_login:
                 registro();
@@ -113,7 +113,7 @@ public class Login_Fragment extends Fragment implements View.OnClickListener {
                             FirebaseUser user = mAuth.getCurrentUser();
                             autenticar();
                         } else {
-                            Toast.makeText(getContext(), "Comprueba de que has introducido correctamente los datos", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Comproba que has introduit correctament les dades", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

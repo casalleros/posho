@@ -32,7 +32,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
     private Usuario user;
 
     private Login_Fragment login;
-    private EditText nombre;
+    private EditText nom;
     private EditText apellidos;
     private EditText fechaDeNacimiento;
     private Button cancelar;
@@ -79,7 +79,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
         calendar = Calendar.getInstance();
         mAuth = FirebaseAuth.getInstance();
         bbdd = FirebaseDatabase.getInstance().getReference("Usuarios");
-        nombre = v.findViewById(R.id.et_registro2_nombre);
+        nom = v.findViewById(R.id.et_registro2_nombre);
         apellidos = v.findViewById(R.id.et_registro2_apellidos);
         fechaDeNacimiento = v.findViewById(R.id.et_registro2_fecha);
         fechaDeNacimiento.setOnClickListener(this);
@@ -130,7 +130,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
 
         if (v.getId()==R.id.btn_registro2_registrar)
         {
-            txtNombre = nombre.getText().toString();
+            txtNombre = nom.getText().toString();
             txtApellidos = apellidos.getText().toString();
             txtfechaDeNacimiento = fechaDeNacimiento.getText().toString();
             if (comprobarLosCampos(txtNombre, txtApellidos, txtfechaDeNacimiento))
@@ -157,7 +157,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
     {
         if (validarNombre.isEmpty())
         {
-            nombre.setError(getString(R.string.EspacioEnBlanco));
+            nom.setError(getString(R.string.EspacioEnBlanco));
             return false;
         }
         else {
@@ -170,7 +170,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
     {
         if (validarFecha.isEmpty())
         {
-            nombre.setError(getString(R.string.EspacioEnBlanco));
+            nom.setError(getString(R.string.EspacioEnBlanco));
             return false;
         }
         else {
@@ -183,7 +183,7 @@ public class Registro2 extends Fragment implements View.OnClickListener{
     {
         if (validarApellidos.isEmpty())
         {
-            nombre.setError(getString(R.string.EspacioEnBlanco));
+            nom.setError(getString(R.string.EspacioEnBlanco));
             return false;
         }
         else {
