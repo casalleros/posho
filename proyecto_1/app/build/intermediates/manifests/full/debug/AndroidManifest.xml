@@ -24,13 +24,15 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="com.l.marc.proyecto_1.MainActivity" />
+
         <service android:name="com.l.marc.proyecto_1.Notificaciones.MyFirebaseInstanceIdService" >
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name="com.l.marc.proyecto_1.MainActivity" >
+        <activity android:name="com.l.marc.proyecto_1.SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
