@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\ricar\\OneDrive\\Documents\\GitHub\\posho\\proyecto_1\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
+            "outputFile": "/home/ricardo/Documentos/GitHub/posho/proyecto_1/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ricar\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\9d9e3599cb621962ac3464f7c0510a49\\res\\values-v26\\values-v26.xml",
+                    "source": "/home/ricardo/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/0f9fc018b25e9e55a74802c1310224a5/res/values-v26/values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",

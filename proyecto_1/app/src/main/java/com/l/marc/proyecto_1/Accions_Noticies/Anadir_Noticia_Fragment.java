@@ -17,25 +17,42 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+<<<<<<< HEAD
 import com.l.marc.proyecto_1.NavigationHost;
 import com.l.marc.proyecto_1.Noticies.Noticies;
 import com.l.marc.proyecto_1.Perfil.Perfil_Tab_Fragment;
+=======
+import com.l.marc.proyecto_1.Noticies.Noticies;
+>>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
 import com.l.marc.proyecto_1.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+<<<<<<< HEAD
+
+public class Anadir_Noticia_Fragment extends Fragment {
+=======
 
 public class Anadir_Noticia_Fragment extends Fragment {
 
+    private Spinner provincias;
+    public EditText titulo;
+    public EditText descripcion;
+    public Button añadirNoticia;
+>>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
+
     private Perfil_Tab_Fragment perfil_tab_fragment;
 
+<<<<<<< HEAD
     private Spinner provincias;
     public EditText titulo;
     public EditText descripcion;
     public Button añadirNoticia;
 
 
+=======
+>>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
     private FirebaseAuth mAuth;
     private DatabaseReference bbdd;
 
@@ -58,9 +75,13 @@ public class Anadir_Noticia_Fragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         bbdd = FirebaseDatabase.getInstance().getReference("Noticias");
 
+<<<<<<< HEAD
 
         provincias=v.findViewById(R.id.spinner_provincias_añadir);
 
+=======
+        provincias.findViewById(R.id.spinner_provincias_añadir);
+>>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
         ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.provincias));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -102,16 +123,24 @@ public class Anadir_Noticia_Fragment extends Fragment {
 
             Date date = new Date();
 
+<<<<<<< HEAD
             String usuario=bbdd.getRef().getRoot().child("usuarios").child(uid).getKey();
 
 
             Noticies noticia = new Noticies(titulo, descripcion, usuario, categoria, date);
+=======
+
+            Noticies noticia = new Noticies(titulo, descripcion, "manueh", categoria, date);
+>>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
             bbdd.child(categoria).child(uid).setValue(noticia);
 
             Toast.makeText(getContext(), "Creado!", Toast.LENGTH_LONG).show();
 
+<<<<<<< HEAD
             perfil_tab_fragment = new Perfil_Tab_Fragment();
             ((NavigationHost) getActivity()).navigateTo(perfil_tab_fragment,true);
+=======
+>>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
         }
         else
         {
