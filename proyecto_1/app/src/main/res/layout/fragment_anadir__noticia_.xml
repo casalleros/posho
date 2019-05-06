@@ -11,8 +11,8 @@
         android:id="@+id/et_titol_añadir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginTop="128dp"
         android:ems="10"
         android:hint="Titol"
         android:inputType="textPersonName"
@@ -23,8 +23,7 @@
         android:id="@+id/ed_descripcio_añadir"
         android:layout_width="339dp"
         android:layout_height="247dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="84dp"
         android:ems="10"
         android:hint="Descripció"
         android:inputType="textMultiLine"
@@ -35,10 +34,18 @@
         android:id="@+id/spinner_provincias_añadir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="420dp"
-        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="488dp"
+        android:layout_marginEnd="104dp"
         android:textColor="#ffff"
         android:textColorHint="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"></Spinner>
+
+    <Button
+        android:id="@+id/btn_añadirNoticia_añadir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir noticia"
+        tools:layout_editor_absoluteX="243dp"
+        tools:layout_editor_absoluteY="667dp" />
 </android.support.constraint.ConstraintLayout>

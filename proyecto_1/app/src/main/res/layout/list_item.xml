@@ -6,68 +6,46 @@
     android:minHeight="?android:attr/listPreferredItemHeight">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/textview_autor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/image"
-        android:text="Nombre"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="153dp"
+        android:text="Autor" />
+
+    <TextView
+        android:id="@+id/textview_titol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="106dp"
+        android:text="Titol"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/black"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/author"
+        android:id="@+id/textview_localitat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/name"
-        android:layout_below="@+id/name"
-        android:text="Autor" />
+        android:layout_alignStart="@+id/textview_autor"
+        android:layout_centerVertical="true"
+        android:text="localitat" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentLeft="true"
+    <TextView
+        android:id="@+id/textview_descripcio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher_background"
-        android:transitionName="shared_image" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="205dp"
         android:padding="16dp"
-        android:text="Precio"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="?colorPrimary" />
-
-    <TextView
-        android:id="@+id/students"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/image"
-        android:layout_toRightOf="@+id/image"
-        android:padding="16dp"
-        android:text="Estudiantes"
+        android:text="Descripcio"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <RatingBar
-        android:id="@+id/rating"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/author"
-        android:layout_below="@+id/author"
-        android:layout_toRightOf="@+id/image"
-        android:isIndicator="true"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:progressTint="#FDDB39"
-        android:rating="3"
-        android:secondaryProgressTint="#FDDB39" />
 
 </RelativeLayout>

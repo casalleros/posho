@@ -123,14 +123,14 @@ public class DetailActivity extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.detail_image);
 
         // Obtiene el curso ha detallar basado en la posición
-        Course detailCourse = Courses.getCourseByPosition(position);
+      //  Course detailCourse = Courses.getCourseByPosition(position);
 
-        name.setText(detailCourse.getName());
-        description.setText(detailCourse.getDescription());
-        author.setText("Creado Por:" + detailCourse.getAuthor());
-        price.setText("$" + detailCourse.getPrice());
-        rating.setRating(detailCourse.getRating());
-        Glide.with(this).load(detailCourse.getIdImage()).into(image);
+      //  name.setText(detailCourse.getName());
+      //  description.setText(detailCourse.getDescription());
+      //  author.setText("Creado Por:" + detailCourse.getAuthor());
+      //  price.setText("$" + detailCourse.getPrice());
+      //  rating.setRating(detailCourse.getRating());
+      //  Glide.with(this).load(detailCourse.getIdImage()).into(image);
     }
 
     private void setToolbar() {

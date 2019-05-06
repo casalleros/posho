@@ -3,12 +3,22 @@ package com.l.marc.proyecto_1.Noticies;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.l.marc.proyecto_1.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +34,11 @@ public class Noticies_Tab_Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    RecyclerView rv;
+
+    List<Noticies> noticies_lista;
+
+    Adapter_Totes_Noticies adapter_totes_noticies;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -65,7 +80,38 @@ public class Noticies_Tab_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_noticies__tab_, container, false);
+        View v= inflater.inflate(R.layout.fragment_noticies__tab_, container, false);
+        rv=v.findViewById(R.id.rv);
+
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        noticies_lista =new ArrayList<>();
+
+        FirebaseDatabase bbdd=FirebaseDatabase.getInstance();
+
+        adapter_totes_noticies=new Adapter_Totes_Noticies(noticies_lista);
+
+        rv.setAdapter(adapter_totes_noticies);
+
+        bbdd.getReference().getRoot().child("Noticias").child("Asturias").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                noticies_lista.removeAll(noticies_lista);
+                for (DataSnapshot snapshot:
+                     dataSnapshot.getChildren()) {
+                    Noticies noticies =snapshot.getValue(Noticies.class);
+
+                    noticies_lista.add(noticies);
+                }
+                adapter_totes_noticies.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -13,6 +13,9 @@ public class Noticies implements Parcelable {
     private String localitat;
     private Date fecha;
 
+    public Noticies() {
+    }
+
     public Noticies(String titol, String descripcio, String autor, String localitat, Date fecha) {
         this.titol = titol;
         this.descripcio = descripcio;

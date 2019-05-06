@@ -36,8 +36,8 @@ public class CourseActivity extends AppCompatActivity {
         linearLayout = new LinearLayoutManager(this);
         recyclerView = (RecyclerView) findViewById(R.id.reciclador);
         recyclerView.setLayoutManager(linearLayout);
-        CourseAdapter adapter = new CourseAdapter(this, Courses.getCourses());
-        recyclerView.setAdapter(adapter);
+        //CourseAdapter adapter = new CourseAdapter(this, Courses.getCourses());
+      //  recyclerView.setAdapter(adapter);
     }
 
     private void setToolbar() {

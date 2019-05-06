@@ -138,8 +138,10 @@ public class Registro2 extends Fragment implements View.OnClickListener{
             txtfechaDeNacimiento = fechaDeNacimiento.getText().toString();
             if (comprobarLosCampos(txtNombre, txtApellidos, txtfechaDeNacimiento))
             {
+                user.setNombre(txtNombre);
+                user.setApellidos(txtApellidos);
+                user.setFechaNacimiento(txtfechaDeNacimiento);
                 crearUsuario();
-                login();
             }
 
         }
@@ -207,20 +209,22 @@ public class Registro2 extends Fragment implements View.OnClickListener{
 
     private void crearUsuario()
     {
-        mAuth.createUserWithEmailAndPassword(user.getEmail().toString(), user.getContraseña().toString())
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getContraseña())
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser userFire = mAuth.getCurrentUser();
                             String uid = userFire.getUid();
                             datosDeUsuario(uid, user);
+                            Toast.makeText(getContext(), "Usuario guardado", Toast.LENGTH_LONG).show();
+                            login();
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
                             updateUI(null);
                         }
                     }

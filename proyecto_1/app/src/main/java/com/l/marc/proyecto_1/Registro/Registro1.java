@@ -89,6 +89,9 @@ public class Registro1 extends Fragment implements View.OnClickListener{
 
             if(comprobarLosCampos(txtUser, txtPassw, txtRepeatPassw, txtEmail))
             {
+                user.setEmail(txtEmail);
+                user.setContraseña(txtPassw);
+                user.setNombreUser(txtUser);
                 registro2 = Registro2.newInstance(user);
                 ((NavigationHost) getActivity()).navigateTo(registro2,true);
             }
