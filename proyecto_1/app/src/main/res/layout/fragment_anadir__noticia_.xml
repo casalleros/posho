@@ -23,12 +23,7 @@
         android:id="@+id/ed_descripcio_añadir"
         android:layout_width="339dp"
         android:layout_height="247dp"
-<<<<<<< HEAD
         android:layout_marginBottom="84dp"
-=======
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="88dp"
->>>>>>> 1797da213fad285216acfb3e6395dc9b1afddecf
         android:ems="10"
         android:hint="Descripció"
         android:inputType="textMultiLine"
