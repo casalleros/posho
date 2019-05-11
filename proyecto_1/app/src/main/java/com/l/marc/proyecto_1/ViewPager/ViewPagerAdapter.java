@@ -24,7 +24,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 Perfil_Tab_Fragment perfil_tab_fragment = new Perfil_Tab_Fragment();
                 return perfil_tab_fragment;
             case 1:
-
                 Noticies_Tab_Fragment noticies_tab_fragment = new Noticies_Tab_Fragment();
                 return noticies_tab_fragment;
 

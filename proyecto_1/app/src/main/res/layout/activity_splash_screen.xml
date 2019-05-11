@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
-    android:background="@color/colorPrimary">
+    android:background="@color/cardview_dark_background">
 
     <TextView
         android:id="@+id/textView"
@@ -14,12 +14,12 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="40dp"
-        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        android:textColor="#FFFFFF"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Ohhh Hello There!!!"
+        android:text="NOTICIES"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

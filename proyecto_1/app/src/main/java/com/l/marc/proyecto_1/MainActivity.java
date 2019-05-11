@@ -55,11 +55,13 @@ public class MainActivity extends AppCompatActivity implements NavigationHost, V
         tl1.addTab(tl1.newTab().setText("PERFIL"));
         tl1.addTab(tl1.newTab().setText("NOTICIES"));
         tl1.setTabGravity(tl1.GRAVITY_FILL);
+
         final ViewPagerAdapter pageAd = new ViewPagerAdapter(getSupportFragmentManager(),tl1.getTabCount());
 
         v1.setAdapter(pageAd);
         v1.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tl1));
-
+        v1.setCurrentItem(1);
+        
         tl1.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

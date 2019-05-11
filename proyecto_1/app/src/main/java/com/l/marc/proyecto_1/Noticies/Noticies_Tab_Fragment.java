@@ -3,7 +3,6 @@ package com.l.marc.proyecto_1.Noticies;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -95,7 +94,7 @@ public class Noticies_Tab_Fragment extends Fragment {
 
         bbdd.getReference().getRoot().child("Noticias").child("Asturias").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 noticies_lista.removeAll(noticies_lista);
                 for (DataSnapshot snapshot:
                      dataSnapshot.getChildren()) {
@@ -107,7 +106,7 @@ public class Noticies_Tab_Fragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });

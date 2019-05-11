@@ -16,10 +16,10 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="171dp">
 
             <TextView
-                android:id="@+id/textview_titol"
+                android:id="@+id/textview_titol_propies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -32,7 +32,7 @@
                 android:textSize="30dp" />
 
             <TextView
-                android:id="@+id/textview_localitat"
+                android:id="@+id/textview_localitat_propies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -41,24 +41,30 @@
                 android:text="localitat" />
 
             <TextView
-                android:id="@+id/textview_descripcio"
+                android:id="@+id/textview_descripcio_propies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textview_localitat"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
                 android:padding="16dp"
                 android:text="Descripció"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/textview_autor"
+            <ImageButton
+                android:id="@+id/btn_editar_propis_noticies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/textview_descripcio"
-                android:layout_gravity="right"
-                android:paddingTop="10dp"
-                android:text="Autor" />
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/textview_titol_propies"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+
+            <ImageButton
+                android:id="@+id/btn_eliminar_propis_noticies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                app:srcCompat="@android:drawable/ic_delete" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

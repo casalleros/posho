@@ -21,6 +21,7 @@ import com.l.marc.proyecto_1.NavigationHost;
 import com.l.marc.proyecto_1.Noticies.Noticies;
 import com.l.marc.proyecto_1.Perfil.Perfil_Tab_Fragment;
 import com.l.marc.proyecto_1.R;
+import com.l.marc.proyecto_1.ViewPager.ViewPagerFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +29,7 @@ import java.util.Locale;
 
 public class Anadir_Noticia_Fragment extends Fragment {
 
-    private Perfil_Tab_Fragment perfil_tab_fragment;
+    private ViewPagerFragment viewPagerFragment;
 
     private Spinner provincias;
     public EditText titulo;
@@ -110,8 +111,8 @@ public class Anadir_Noticia_Fragment extends Fragment {
 
             Toast.makeText(getContext(), "Creado!", Toast.LENGTH_LONG).show();
 
-            perfil_tab_fragment = new Perfil_Tab_Fragment();
-            ((NavigationHost) getActivity()).navigateTo(perfil_tab_fragment,true);
+            viewPagerFragment = new ViewPagerFragment();
+            ((NavigationHost) getActivity()).navigateTo(viewPagerFragment,false);
         }
         else
         {

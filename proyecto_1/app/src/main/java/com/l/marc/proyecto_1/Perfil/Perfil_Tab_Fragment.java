@@ -3,15 +3,27 @@ package com.l.marc.proyecto_1.Perfil;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.l.marc.proyecto_1.Accions_Noticies.Anadir_Noticia_Fragment;
 import com.l.marc.proyecto_1.NavigationHost;
+import com.l.marc.proyecto_1.Noticies.Noticies;
 import com.l.marc.proyecto_1.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +44,14 @@ public class Perfil_Tab_Fragment extends Fragment implements View.OnClickListene
     private String mParam1;
     private String mParam2;
 
+    private RecyclerView recyclerView;
+
     private Button AñadirNoticia;
     private OnFragmentInteractionListener mListener;
+
+    private List<Noticies> noticies;
+
+    private Adapter_Propies_Noticies adapter_propies_noticies;
 
     public Perfil_Tab_Fragment() {
         // Required empty public constructor
@@ -73,6 +91,40 @@ public class Perfil_Tab_Fragment extends Fragment implements View.OnClickListene
         View v= inflater.inflate(R.layout.fragment_perfil__tab_, container, false);
         AñadirNoticia=v.findViewById(R.id.btn_añadir_noticia_perfil);
         AñadirNoticia.setOnClickListener(this);
+
+        recyclerView=v.findViewById(R.id.recicler_propies);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        noticies=new ArrayList<>();
+
+        adapter_propies_noticies=new Adapter_Propies_Noticies(noticies);
+
+        recyclerView.setAdapter(adapter_propies_noticies);
+
+        FirebaseDatabase bbdd=FirebaseDatabase.getInstance();
+        bbdd.getReference().getRoot().child("Noticies").child("Asturias").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                noticies.removeAll(noticies);
+
+                for (DataSnapshot datasnaphot:
+                    dataSnapshot.getChildren() ) {
+
+                    Noticies noticies1=datasnaphot.getValue(Noticies.class);
+                    noticies.add(noticies1);
+                }
+                adapter_propies_noticies.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         return v;
     }
 

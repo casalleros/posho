@@ -47,6 +47,8 @@ public class ViewPagerFragment extends Fragment {
         viewPage = (ViewPager) v.findViewById(R.id.pager);
         table = (TabLayout) v.findViewById(R.id.tab_layout);
 
+
+
         mListener.iniciliazarTab(table,viewPage);
 
         return v;
